@@ -10,6 +10,7 @@ const Calculator = () => {
       setExpression("Error");
     }
   };
+
   const handleButton = (buttonValue) => {
     setExpression(expression + buttonValue);
   };
