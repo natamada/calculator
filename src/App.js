@@ -20,15 +20,15 @@ const Calculator = () => {
   };
 
   useEffect(() => {
-    const handleKeyboardInput = (event) => {
-      const key = event.key;
+    const handleKeyboardInput = (e) => {
+      const key = e.key;
 
       if (key === "Enter") {
         calculate();
       } else if (key === "Backspace") {
-        setExpression((prevExpression) => prevExpression.slice(0, -1));
+        setExpression((prev) => prev.slice(0, -1));
       } else {
-        setExpression((prevExpression) => prevExpression + key);
+        setExpression((prev) => prev + key);
       }
     };
 
@@ -44,20 +44,11 @@ const Calculator = () => {
       <input type="text" className="input-field" value={expression} />
 
       <div className="keypad">
-        <button onClick={() => handleButton("1")}>1</button>
-        <button onClick={() => handleButton("2")}>2</button>
-        <button onClick={() => handleButton("3")}>3</button>
-        <button onClick={() => handleButton("+")}>+</button>
-        <button onClick={() => handleButton("4")}>4</button>
-        <button onClick={() => handleButton("5")}>5</button>
-        <button onClick={() => handleButton("6")}>6</button>
-        <button onClick={() => handleButton("-")}>-</button>
-        <button onClick={() => handleButton("7")}>7</button>
-        <button onClick={() => handleButton("8")}>8</button>
-        <button onClick={() => handleButton("9")}>9</button>
-        <button onClick={() => handleButton("*")}>*</button>
-        <button onClick={() => handleButton("0")}>0</button>
-        <button onClick={() => handleButton("/")}>/</button>
+         {[1, 2, 3, "+", 4, 5, 6, "-", 7, 8, 9, "*", 0, "/"].map((value) => (
+          <button key={value} onClick={() => handleButton(value)}>
+            {value}
+          </button>
+        ))}
         <button onClick={calculate}>=</button>
         <button onClick={clear}>Clear</button>
       </div>
